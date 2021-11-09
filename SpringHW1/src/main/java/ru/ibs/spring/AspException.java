@@ -7,6 +7,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import javax.annotation.PostConstruct;
 
@@ -17,9 +18,13 @@ public class AspException {
     @Pointcut("@annotation(ru.ibs.spring.AnnotFuelExceptionHandle)")
     public void callAtBusinessMethod(){}
 
-    @AfterThrowing(value = "callAtBusinessMethod()")
-    public String check() throws Throwable {
+    @Around(value = "callAtBusinessMethod()")
+    public Object check(ProceedingJoinPoint pjp) throws Throwable {
+        try{
+           return pjp.proceed();
+        }catch (Exception e){
+            return "error";
+        }
 
-        return "error";
     }
 }

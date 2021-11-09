@@ -14,6 +14,8 @@ public class MyController {
     private final static String CONST_PETROL = "petrol";
     private final static String CONST_DIESEL = "diesel";
     HashMap<String,Engine> stringEngineHashMap;
+
+
     @GetMapping("/fuel")
     @AnnotFuelExceptionHandle
     public String fuel(
@@ -21,41 +23,10 @@ public class MyController {
             Model model,
             Creator creator
     ) {
+        model.addAttribute("name", creator.allEngine().get(name).powerUp());
+        return "fuel";
 
-       model.addAttribute("name",creator.allEngine().get(name).powerUp());
-
-       return "fuel";
-
-
-        //укороченная версия
-        /*String str = null;
-        if(CONST_PETROL.equals(name)){
-            str = "petrol";
-        }else if(CONST_DIESEL.equals(name)){
-            str = "diesel";
-        }
-        String type = beansCla.allEngine().get(str).powerUp();
-        model.addAttribute("name",type);
-        return "fuel";*/
-
-
-        //изначальная версия
-       /* if(CONST_PETROL.equals(name)) {
-            String petrol = beansCla.allEngine().get(name).powerUp();
-            model.addAttribute("name", petrol);
-        }
-        else if(CONST_DIESEL.equals(name)) {
-        String diesel = beansCla.allEngine().get(name).powerUp();
-        model.addAttribute("name",diesel);
-        }
-        return "fuel";*/
     }
-    /*@GetMapping
-    public String main(Map<String, Object> model) {
-        model.put("some", "User");
-        return "main";
-    }
-*/
     @GetMapping("/error")
     public String error() {
         return "error";
