@@ -21,7 +21,11 @@ public class MyController {
             Model model,
             Creator creator
     ) {
+
        model.addAttribute("name",creator.allEngine().get(name).powerUp());
+
+       model.addAttribute("name",creator.allEngine().get(name).powerUp());
+
        return "fuel";
 
 
