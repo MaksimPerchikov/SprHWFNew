@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class Diesel implements Engine{
 
-    @Autowired
+   /* @Autowired
     private Diesel diesel;
-
+*/
     //пока что не нужно.
     @Override
     public String powerUp() {

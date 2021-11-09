@@ -9,7 +9,7 @@ import java.util.HashMap;
 public class BeansCla {
 
     @Autowired
-    public HashMap<String, Engine> met() {
+    public HashMap<String, Engine> allEngine() {
         HashMap<String, Engine> engineHashMap = new HashMap<>();
         engineHashMap.put("petrol",new Petrol());
         engineHashMap.put("diesel",new Diesel());
