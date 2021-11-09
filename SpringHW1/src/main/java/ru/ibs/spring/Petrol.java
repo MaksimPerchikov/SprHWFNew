@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class Petrol implements Engine {
 
-    @Autowired
-    private Petrol petrol;
+    /*@Autowired
+    private Petrol petrol;*/
 
     @Override
     public String powerUp() {

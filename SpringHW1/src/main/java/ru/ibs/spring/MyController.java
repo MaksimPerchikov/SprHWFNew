@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.HashMap;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/mvc")
@@ -20,17 +19,34 @@ public class MyController {
     public String fuel(
             @RequestParam(name="name", required=false, defaultValue="Какой-то") String name,
             Model model,
-            BeansCla beansCla
+            Creator creator
     ) {
-        if(CONST_PETROL.equals(name)) {
-            String petrol = beansCla.met().get("petrol").powerUp();
+       model.addAttribute("name",creator.allEngine().get(name).powerUp());
+       return "fuel";
+
+
+        //укороченная версия
+        /*String str = null;
+        if(CONST_PETROL.equals(name)){
+            str = "petrol";
+        }else if(CONST_DIESEL.equals(name)){
+            str = "diesel";
+        }
+        String type = beansCla.allEngine().get(str).powerUp();
+        model.addAttribute("name",type);
+        return "fuel";*/
+
+
+        //изначальная версия
+       /* if(CONST_PETROL.equals(name)) {
+            String petrol = beansCla.allEngine().get(name).powerUp();
             model.addAttribute("name", petrol);
         }
         else if(CONST_DIESEL.equals(name)) {
-        String diesel = beansCla.met().get("diesel").powerUp();
+        String diesel = beansCla.allEngine().get(name).powerUp();
         model.addAttribute("name",diesel);
         }
-        return "fuel";
+        return "fuel";*/
     }
     /*@GetMapping
     public String main(Map<String, Object> model) {
